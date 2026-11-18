@@ -1,0 +1,18 @@
+# E2 - size generalisation on core-periphery networks (10% core banks at every size).
+#   fd_nX : fixed_degree - block link probabilities scaled by 100/N (expected degrees per block fixed)
+#   fp_nX : fixed_p      - paper probabilities kept (degree grows with N)
+name: e2_size_cp
+data:
+  train: {gen: {topology: cp, n: 100}, n_graphs: 10000, seed: 501}
+  val:   {gen: {topology: cp, n: 100}, n_graphs: 2500,  seed: 502}
+  test:
+    fd_n100:  {gen: {topology: cp, n: 100}, n_graphs: 1000, seed: 503}
+    fd_n200:  {gen: {topology: cp, n: 200,  size_mode: fixed_degree}, n_graphs: 1000, seed: 504}
+    fd_n500:  {gen: {topology: cp, n: 500,  size_mode: fixed_degree}, n_graphs: 1000, seed: 505}
+    fd_n1000: {gen: {topology: cp, n: 1000, size_mode: fixed_degree}, n_graphs: 500,  seed: 506}
+    fp_n200:  {gen: {topology: cp, n: 200,  size_mode: fixed_p}, n_graphs: 1000, seed: 507}
+models: [kstep1, kstep3, linreg_A, linreg_B, mlp_B, gbt_B, g1_paper, g2_en]
+model_overrides:
+  g2_en: {eval_T: [16, 32, 64]}
+seeds: [0, 1, 2]
+train: {epochs: 200, batch_size: 64, lr: 0.001, patience: 20}

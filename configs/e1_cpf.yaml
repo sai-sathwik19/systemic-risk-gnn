@@ -1,0 +1,10 @@
+# E1 - in-distribution benchmark, cpf networks at N = 100 (paper-2 settings)
+name: e1_cpf
+data:
+  train: {gen: {topology: cpf}, n_graphs: 10000, seed: 301}
+  val:   {gen: {topology: cpf}, n_graphs: 2500,  seed: 302}
+  test:
+    cpf_n100: {gen: {topology: cpf}, n_graphs: 2500, seed: 303}
+models: [kstep1, kstep3, linreg_A, linreg_B, mlp_B, gbt_B, g1_paper, g2_en]
+seeds: [0, 1, 2, 3, 4]
+train: {epochs: 200, batch_size: 64, lr: 0.001, patience: 20}

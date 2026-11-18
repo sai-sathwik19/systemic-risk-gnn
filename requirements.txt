@@ -1,0 +1,12 @@
+# Install PyTorch first for your platform (https://pytorch.org); Colab already ships CUDA torch.
+#   local CPU:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch>=2.0
+torch_geometric>=2.4
+numpy
+scipy
+scikit-learn
+networkx
+pyyaml
+pandas
+matplotlib
+pytest

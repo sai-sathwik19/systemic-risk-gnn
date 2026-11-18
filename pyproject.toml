@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sysrisk"
+version = "0.1.0"
+description = "GNNs for systemic financial risk: an Eisenberg-Noe clearing benchmark (AI in Finance, Project 12)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+    "torch>=2.0",
+    "torch_geometric>=2.4",
+    "scikit-learn",
+    "networkx",
+    "pyyaml",
+    "pandas",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

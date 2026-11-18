@@ -1,0 +1,16 @@
+# E2 variant - train on a mix of sizes (fixed_degree, N in {50, 100, 150}); same ER test sets as e2_size_er.
+name: e2_size_er_mixed
+data:
+  train: {gen: {topology: er, n: [50, 100, 150], size_mode: fixed_degree}, n_graphs: 10000, seed: 601}
+  val:   {gen: {topology: er, n: [50, 100, 150], size_mode: fixed_degree}, n_graphs: 2500,  seed: 602}
+  test:
+    fd_n100:  {gen: {topology: er, n: 100}, n_graphs: 1000, seed: 403}
+    fd_n50:   {gen: {topology: er, n: 50,   size_mode: fixed_degree}, n_graphs: 1000, seed: 404}
+    fd_n200:  {gen: {topology: er, n: 200,  size_mode: fixed_degree}, n_graphs: 1000, seed: 405}
+    fd_n500:  {gen: {topology: er, n: 500,  size_mode: fixed_degree}, n_graphs: 1000, seed: 406}
+    fd_n1000: {gen: {topology: er, n: 1000, size_mode: fixed_degree}, n_graphs: 500,  seed: 407}
+models: [kstep1, kstep3, linreg_B, mlp_B, gbt_B, g1_paper, g2_en]
+model_overrides:
+  g2_en: {eval_T: [16, 32, 64]}
+seeds: [0, 1, 2]
+train: {epochs: 200, batch_size: 64, lr: 0.001, patience: 20}

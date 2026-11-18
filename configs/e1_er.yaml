@@ -1,0 +1,10 @@
+# E1 - in-distribution benchmark, er networks at N = 100 (paper-2 settings)
+name: e1_er
+data:
+  train: {gen: {topology: er}, n_graphs: 10000, seed: 101}
+  val:   {gen: {topology: er}, n_graphs: 2500,  seed: 102}
+  test:
+    er_n100: {gen: {topology: er}, n_graphs: 2500, seed: 103}
+models: [kstep1, kstep3, linreg_A, linreg_B, mlp_B, gbt_B, g1_paper, g2_en]
+seeds: [0, 1, 2, 3, 4]
+train: {epochs: 200, batch_size: 64, lr: 0.001, patience: 20}
